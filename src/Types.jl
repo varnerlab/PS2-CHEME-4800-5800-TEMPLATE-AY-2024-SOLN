@@ -1,48 +1,23 @@
-abstract type AbstractGridWorldRuleModel end
+abstract type AbstractPolicyModel end
 
 """
-    MyOneDimensionalTwoColorElementaryRuleModel
+    mutable struct MyOneDimensionalElementarWolframRuleModel <: AbstractPolicyModel
 
-A type to represent a one-dimensional, two-color, elementary cellular automaton rule.
-You build an instance of this type by calling `build(MyOneDimensionalTwoColorElementaryRuleModel, index=i)`, where `i` is the rule number.
+The `MyOneDimensionalElementarWolframRuleModel` mutable struct represents a one-dimensional elementary Wolfram rule model.
 
-### Fields
-- `index::Int`: the index of the rule, i.e., the rule number
-- `radius::Int`: the radius of the rule (how many cells to look at)
-- `rule::Dict{Int,Int}`: the rule dictionary. The key is the integer representation of the neighborhood, and the value is the new state of the cell.
+### Required fields
+- `index::Int`: The index of the rule
+- `radius::Int`: The radius, i.e, the number of cells that influence the next state for this rule
+- `rule::Dict{Int,Int}`: A dictionary that holds the rule where the `key` is the binary representation of the neighborhood and the `value` is the next state
 """
-mutable struct MyOneDimensionalTwoColorElementaryRuleModel <: AbstractGridWorldRuleModel
+mutable struct MyOneDimensionalTwoColorElementaryRuleModel <: AbstractPolicyModel
     
     # data
     index::Int
     radius::Int
-    rule::Dict{Int,Int}
+    number_of_colors::Int
+    rule::Dict{Int, Int}
 
     # constructor -
     MyOneDimensionalTwoColorElementaryRuleModel() = new();
 end
-
-"""
-    MyOneDimensionalThreeColorElementaryRuleModel
-
-A type to represent a one-dimensional, three-color, elementary cellular automaton rule.
-You build an instance of this type by calling `build(MyOneDimensionalThreeColorElementaryRuleModel, index=i)`, where `i` is the rule number.
-
-### Fields
-- `index::Int`: the index of the rule, i.e., the rule number
-- `radius::Int`: the radius of the rule (how many cells to look at)
-- `rule::Dict{Int,Int}`: the rule dictionary. The key is the integer representation of the neighborhood, and the value is the new state of the cell.
-"""
-mutable struct MyOneDimensionalThreeColorElementaryRuleModel <: AbstractGridWorldRuleModel
-    
-    # data
-    index::Int
-    radius::Int
-    rule::Dict{Int,Int}
-
-    # constructor -
-    MyOneDimensionalThreeColorElementaryRuleModel() = new();
-end
-
-
-
